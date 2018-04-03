@@ -1,11 +1,24 @@
-from tkinter import Tk, Button
+import tkinter as tk
+import threading
 
-root = Tk()
-button = Button(root, text="Click Me!")
-button.pack()
+class App(threading.Thread):
 
-def callback(event):
-    print ("Hello World!")
+    def __init__(self):
+        threading.Thread.__init__(self)
+        self.start()
 
-button.bind("<Button-1>", callback)
-root.mainloop()
+    def callback(self):
+        self.root.quit()
+
+    def run(self):
+        self.root = tk.Tk()
+        self.root.protocol("WM_DELETE_WINDOW", self.callback)
+
+        label = tk.Label(self.root, text="Hello World")
+        label.pack()
+
+        self.root.mainloop()
+
+
+app = App()
+print('Now we can continue running code while mainloop runs!')
