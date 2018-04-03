@@ -7,10 +7,10 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 
 root = tk.Tk()
-root.geometry('1200x700+200+100')
-root.title('This is my root window')
-root.state('zoomed')
-root.config(background='#fafafa')
+#root.geometry('1200x700+200+100')
+#root.title('This is my root window')
+#root.state('zoomed')
+#root.config(background='#fafafa')
 
 xar = []
 yar = []
@@ -19,6 +19,7 @@ style.use('ggplot')
 fig = plt.figure(figsize=(14, 4.5), dpi=100)
 ax1 = fig.add_subplot(1, 1, 1)
 ax1.set_ylim(0, 100)
+ax1.set_xlim(0, 100)
 line, = ax1.plot(xar, yar, 'r', marker='o')
 #ser = serial.Serial('com3', 9600)
 
@@ -36,6 +37,6 @@ def animate(i):
 plotcanvas = FigureCanvasTkAgg(fig, root)
 plotcanvas.get_tk_widget().grid(column=1, row=1)
 ani = animation.FuncAnimation(fig, animate, interval=10, blit=False)
-plotcanvas.show()
+#plotcanvas.show()
 
 root.mainloop()
